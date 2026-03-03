@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ateliê Crie Vida — Cortinas e Persianas</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Outfit:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--cream:#F5F0EB;--white:#FAF8F5;--sand:#D4C5B5;--taupe:#A89585;--mocha:#6B5B4E;--espresso:#3D322A;--charcoal:#2A2420;--gold:#C4A87C;--rose:#C9A396;--green:#5C6B5A}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;overflow-x:hidden}
+body{font-family:'Outfit',sans-serif;background:var(--white);color:var(--espresso);overflow-x:hidden}
+
+/* PRELOADER */
+.preloader{position:fixed;inset:0;background:var(--charcoal);z-index:10000;display:flex;align-items:center;justify-content:center;flex-direction:column;transition:opacity .8s,visibility .8s}
+.preloader.hidden{opacity:0;visibility:hidden;pointer-events:none}
+.preloader-t{font-family:'Cormorant Garamond',serif;font-size:clamp(24px,5vw,42px);color:var(--sand);font-weight:300;font-style:italic;letter-spacing:.08em;opacity:0;animation:fiu 1s .3s forwards}
+.preloader-l{width:60px;height:1px;background:var(--gold);margin-top:20px;transform:scaleX(0);animation:exl 1.5s .6s forwards}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 30px;display:flex;justify-content:space-between;align-items:center;transition:all .4s}
+nav.scrolled{background:rgba(250,248,245,.92);backdrop-filter:blur(20px);padding:14px 30px;box-shadow:0 1px 30px rgba(61,50,42,.06)}
+.nav-logo{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:500;color:var(--cream);letter-spacing:.05em;text-decoration:none;transition:color .4s}
+nav.scrolled .nav-logo{color:var(--charcoal)}
+.nav-cta{padding:10px 28px;background:0;border:1px solid var(--cream);color:var(--cream);font-size:11px;font-weight:500;letter-spacing:.15em;text-transform:uppercase;text-decoration:none;transition:all .4s;font-family:'Outfit',sans-serif}
+nav.scrolled .nav-cta{border-color:var(--charcoal);color:var(--charcoal)}
+.nav-cta:hover{background:var(--gold);border-color:var(--gold);color:var(--charcoal)}
+
+/* HERO */
+.hero{position:relative;height:100vh;min-height:650px;display:flex;align-items:center;justify-content:center;overflow:hidden;background:var(--charcoal)}
+.hero-bg{position:absolute;inset:0;background:linear-gradient(135deg,rgba(61,50,42,.85),rgba(42,36,32,.7) 50%,rgba(92,107,90,.5));z-index:1}
+.hero-pat{position:absolute;inset:0;z-index:1;background-image:repeating-linear-gradient(90deg,rgba(196,168,124,.04) 0 1px,transparent 1px 100px),repeating-linear-gradient(0deg,rgba(196,168,124,.04) 0 1px,transparent 1px 100px)}
+.hero-c{position:relative;z-index:2;text-align:center;padding:0 24px;max-width:780px}
+.hero-tag{font-size:11px;letter-spacing:.35em;text-transform:uppercase;color:var(--gold);margin-bottom:28px;opacity:0;animation:fiu 1s 1.8s forwards}
+.hero-h{font-family:'Cormorant Garamond',serif;font-size:clamp(36px,8vw,76px);font-weight:300;line-height:1.1;color:var(--cream);margin-bottom:22px;opacity:0;animation:fiu 1s 2s forwards}
+.hero-h em{font-style:italic;color:var(--gold)}
+.hero-sub{font-size:clamp(14px,2.5vw,17px);font-weight:300;color:var(--sand);line-height:1.7;max-width:480px;margin:0 auto 36px;opacity:0;animation:fiu 1s 2.2s forwards}
+.hero-btn{display:inline-block;padding:16px 48px;border:1px solid var(--gold);color:var(--gold);font-size:12px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;text-decoration:none;transition:all .5s;opacity:0;animation:fiu 1s 2.4s forwards}
+.hero-btn:hover{background:var(--gold);color:var(--charcoal)}
+.hero-scroll{position:absolute;bottom:36px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;opacity:0;animation:fiu 1s 2.8s forwards}
+.hero-scroll span{font-size:10px;letter-spacing:.3em;color:var(--taupe);text-transform:uppercase}
+.scr-line{width:1px;height:36px;background:linear-gradient(to bottom,var(--gold),transparent);animation:sp 2s infinite}
+
+/* INTRO */
+.intro{padding:clamp(80px,12vw,160px) 24px;text-align:center;background:var(--white)}
+.eyebrow{font-size:11px;letter-spacing:.35em;text-transform:uppercase;color:var(--taupe);margin-bottom:22px}
+.sec-h{font-family:'Cormorant Garamond',serif;font-size:clamp(26px,5vw,50px);font-weight:300;line-height:1.25;color:var(--espresso);max-width:680px;margin:0 auto 28px}
+.sec-h em{font-style:italic;color:var(--green)}
+.sec-body{font-size:clamp(14px,2vw,16px);font-weight:300;line-height:1.8;color:var(--mocha);max-width:520px;margin:0 auto}
+.divider{width:50px;height:1px;background:var(--gold);margin:36px auto 0}
+
+/* SERVICES */
+.services{padding:clamp(60px,10vw,120px) 24px;background:var(--cream)}
+.srv-grid{display:grid;grid-template-columns:1fr;gap:20px;max-width:1100px;margin:0 auto}
+@media(min-width:768px){.srv-grid{grid-template-columns:repeat(3,1fr);gap:28px}}
+.srv-card{padding:clamp(32px,5vw,48px) clamp(24px,3vw,32px);background:var(--white);border:1px solid rgba(168,149,133,.12);transition:all .6s cubic-bezier(.23,1,.32,1);position:relative;overflow:hidden}
+.srv-card::before{content:'';position:absolute;top:0;left:0;width:100%;height:2px;background:linear-gradient(90deg,var(--gold),var(--rose));transform:scaleX(0);transform-origin:left;transition:transform .6s cubic-bezier(.23,1,.32,1)}
+.srv-card:hover{transform:translateY(-6px);box-shadow:0 20px 50px rgba(61,50,42,.07)}
+.srv-card:hover::before{transform:scaleX(1)}
+.srv-ico{font-size:28px;margin-bottom:20px;display:block}
+.srv-t{font-family:'Cormorant Garamond',serif;font-size:clamp(20px,3vw,26px);font-weight:500;color:var(--espresso);margin-bottom:12px}
+.srv-d{font-size:14px;font-weight:300;line-height:1.7;color:var(--mocha)}
+
+/* SHOWCASE */
+.showcase{padding:clamp(80px,12vw,160px) 24px;background:var(--white)}
+.shw-grid{display:grid;grid-template-columns:1fr;gap:16px;max-width:1100px;margin:clamp(36px,6vw,60px) auto 0}
+@media(min-width:768px){.shw-grid{grid-template-columns:repeat(2,1fr);gap:20px}}
+.shw-item{position:relative;aspect-ratio:4/3;overflow:hidden}
+.shw-bg{position:absolute;inset:0;transition:transform .8s cubic-bezier(.23,1,.32,1)}
+.shw-item:hover .shw-bg{transform:scale(1.06)}
+.shw-ov{position:absolute;inset:0;background:linear-gradient(to top,rgba(42,36,32,.7),transparent 60%);display:flex;align-items:flex-end;padding:clamp(20px,4vw,32px)}
+.shw-ov h3{font-family:'Cormorant Garamond',serif;font-size:clamp(20px,3vw,28px);font-weight:400;color:var(--cream);margin-bottom:4px}
+.shw-ov p{font-size:13px;font-weight:300;color:var(--sand)}
+.bg1{background:linear-gradient(135deg,#C9A396,#D4C5B5,#A89585)}
+.bg2{background:linear-gradient(135deg,#5C6B5A,#6B7B69,#8B9B89)}
+.bg3{background:linear-gradient(135deg,#6B5B4E,#8B7B6E,#A89585)}
+.bg4{background:linear-gradient(135deg,#C4A87C,#D4C5B5,#E5D5C5)}
+
+/* QUOTE */
+.quote{padding:clamp(80px,12vw,140px) 24px;background:var(--charcoal);text-align:center;position:relative;overflow:hidden}
+.quote::before{content:'\201C';position:absolute;top:-30px;left:50%;transform:translateX(-50%);font-family:'Cormorant Garamond',serif;font-size:clamp(180px,28vw,360px);color:rgba(196,168,124,.05);line-height:1}
+.quote-t{font-family:'Cormorant Garamond',serif;font-size:clamp(22px,4.5vw,38px);font-weight:300;font-style:italic;line-height:1.4;color:var(--cream);max-width:680px;margin:0 auto 28px;position:relative;z-index:1}
+.quote-a{font-size:12px;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);position:relative;z-index:1}
+
+/* PROCESS */
+.process{padding:clamp(80px,12vw,140px) 24px;background:var(--cream)}
+.proc-steps{max-width:580px;margin:clamp(36px,6vw,56px) auto 0;display:flex;flex-direction:column}
+.proc-step{display:flex;gap:22px;padding:28px 0;border-bottom:1px solid rgba(168,149,133,.2);align-items:flex-start}
+.proc-n{font-family:'Cormorant Garamond',serif;font-size:34px;font-weight:300;color:var(--gold);line-height:1;min-width:36px}
+.proc-ct h3{font-family:'Cormorant Garamond',serif;font-size:21px;font-weight:500;color:var(--espresso);margin-bottom:6px}
+.proc-ct p{font-size:14px;font-weight:300;line-height:1.7;color:var(--mocha)}
+
+/* CTA */
+.cta{padding:clamp(80px,14vw,180px) 24px;background:var(--white);text-align:center;position:relative}
+.cta::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:1px;height:70px;background:linear-gradient(to bottom,var(--sand),transparent)}
+.cta-h{font-family:'Cormorant Garamond',serif;font-size:clamp(28px,6vw,52px);font-weight:300;line-height:1.2;color:var(--espresso);margin-bottom:18px}
+.cta-h em{font-style:italic;color:var(--green)}
+.cta-sub{font-size:15px;font-weight:300;color:var(--mocha);line-height:1.7;max-width:440px;margin:0 auto 36px}
+.cta-btn{display:inline-block;padding:18px 52px;background:var(--charcoal);color:var(--cream);font-size:13px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;text-decoration:none;transition:all .5s;position:relative;overflow:hidden}
+.cta-btn::before{content:'';position:absolute;inset:0;background:var(--gold);transform:translateY(100%);transition:transform .5s cubic-bezier(.23,1,.32,1)}
+.cta-btn span{position:relative;z-index:1}
+.cta-btn:hover::before{transform:translateY(0)}
+.cta-btn:hover{color:var(--charcoal)}
+.cta-info{margin-top:36px;display:flex;flex-direction:column;align-items:center;gap:10px}
+.cta-info a{font-size:14px;font-weight:300;color:var(--mocha);text-decoration:none;letter-spacing:.04em;transition:color .3s}
+.cta-info a:hover{color:var(--gold)}
+
+/* FOOTER */
+footer{padding:36px 24px;background:var(--charcoal);text-align:center}
+.ft-logo{font-family:'Cormorant Garamond',serif;font-size:21px;font-weight:400;color:var(--sand);letter-spacing:.05em;margin-bottom:10px}
+.ft-sub{font-size:12px;font-weight:300;color:var(--taupe);letter-spacing:.08em;margin-bottom:20px}
+.ft-links{display:flex;justify-content:center;gap:24px;margin-bottom:24px;flex-wrap:wrap}
+.ft-links a{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--taupe);text-decoration:none;transition:color .3s}
+.ft-links a:hover{color:var(--gold)}
+.ft-copy{font-size:11px;color:var(--mocha);opacity:.4}
+
+/* WHATSAPP */
+.wpp{position:fixed;bottom:24px;right:24px;width:56px;height:56px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;z-index:90;box-shadow:0 4px 20px rgba(37,211,102,.35);transition:transform .3s;text-decoration:none}
+.wpp:hover{transform:scale(1.1)}
+.wpp svg{width:28px;height:28px;fill:#fff}
+
+/* REVEAL */
+.rv{opacity:0;transform:translateY(36px);transition:opacity .9s cubic-bezier(.23,1,.32,1),transform .9s cubic-bezier(.23,1,.32,1)}
+.rv.v{opacity:1;transform:translateY(0)}
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}.d4{transition-delay:.4s}
+
+@keyframes fiu{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+@keyframes exl{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes sp{0%,100%{opacity:.3;transform:translateY(0)}50%{opacity:1;transform:translateY(8px)}}
+
+@media(max-width:480px){nav{padding:16px 18px}nav.scrolled{padding:12px 18px}.nav-logo{font-size:16px}.nav-cta{padding:8px 18px;font-size:10px}}
+</style>
+</head>
+<body>
+
+<!-- PRELOADER -->
+<div class="preloader" id="preloader">
+  <div class="preloader-t">Ateliê Crie Vida</div>
+  <div class="preloader-l"></div>
+</div>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#" class="nav-logo">Ateliê Crie Vida</a>
+  <a href="https://wa.me/5511962513056" target="_blank" class="nav-cta">Fale Conosco</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-pat"></div>
+  <div class="hero-c">
+    <p class="hero-tag">Cortinas &amp; Persianas sob medida</p>
+    <h1 class="hero-h">Ambientes que<br>traduzem a sua<br><em>essência</em></h1>
+    <p class="hero-sub">Design de cortinas e persianas personalizadas que transformam cada espaço em uma expressão única de quem você é.</p>
+    <a href="https://wa.me/5511962513056" target="_blank" class="hero-btn">Solicite seu Orçamento</a>
+  </div>
+  <div class="hero-scroll"><span>Descubra</span><div class="scr-line"></div></div>
+</section>
+
+<!-- INTRO -->
+<section class="intro">
+  <p class="eyebrow rv">Nossa Filosofia</p>
+  <h2 class="sec-h rv d1">Cada cortina conta uma história. Cada persiana reflete uma <em>personalidade</em>.</h2>
+  <p class="sec-body rv d2">No Ateliê Crie Vida, acreditamos que os detalhes definem um ambiente. Sob a direção criativa de Cristiane Bezerra, cada projeto é concebido com o cuidado e a atenção que só um ateliê de verdade pode oferecer.</p>
+  <div class="divider rv d3"></div>
+</section>
+
+<!-- SERVICES -->
+<section class="services">
+  <div class="srv-grid">
+    <div class="srv-card rv">
+      <span class="srv-ico">◐</span>
+      <h3 class="srv-t">Cortinas</h3>
+      <p class="srv-d">Do clássico ao contemporâneo. Tecidos nobres, caimentos perfeitos e acabamentos que elevam qualquer ambiente à sua melhor versão.</p>
+    </div>
+    <div class="srv-card rv d1">
+      <span class="srv-ico">▧</span>
+      <h3 class="srv-t">Persianas</h3>
+      <p class="srv-d">Controle de luz com elegância. Persianas em madeira, alumínio e tecido — funcionais, silenciosas e visualmente impecáveis.</p>
+    </div>
+    <div class="srv-card rv d2">
+      <span class="srv-ico">◈</span>
+      <h3 class="srv-t">Automação</h3>
+      <p class="srv-d">Tecnologia invisível a serviço do conforto. Cortinas e persianas motorizadas com controle remoto ou smartphone.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SHOWCASE -->
+<section class="showcase">
+  <div style="text-align:center">
+    <p class="eyebrow rv">Nossos Projetos</p>
+    <h2 class="sec-h rv d1">Ambientes que <em>inspiram</em></h2>
+  </div>
+  <div class="shw-grid">
+    <div class="shw-item rv"><div class="shw-bg bg1"></div><div class="shw-ov"><div><h3>Cortinas Clássicas</h3><p>Elegância atemporal</p></div></div></div>
+    <div class="shw-item rv d1"><div class="shw-bg bg2"></div><div class="shw-ov"><div><h3>Persianas em Madeira</h3><p>Calor e sofisticação</p></div></div></div>
+    <div class="shw-item rv d2"><div class="shw-bg bg3"></div><div class="shw-ov"><div><h3>Automação Residencial</h3><p>Conforto inteligente</p></div></div></div>
+    <div class="shw-item rv d3"><div class="shw-bg bg4"></div><div class="shw-ov"><div><h3>Projetos Corporativos</h3><p>Ambientes de alto padrão</p></div></div></div>
+  </div>
+</section>
+
+<!-- QUOTE -->
+<section class="quote">
+  <p class="quote-t rv">Cada detalhe importa. A luz que entra, o tecido que toca, o movimento que encanta — tudo isso transforma um espaço em um lar.</p>
+  <p class="quote-a rv d1">Cristiane Bezerra — Fundadora</p>
+</section>
+
+<!-- PROCESS -->
+<section class="process">
+  <div style="text-align:center">
+    <p class="eyebrow rv">Como Funciona</p>
+    <h2 class="sec-h rv d1">Do sonho à <em>realidade</em></h2>
+  </div>
+  <div class="proc-steps">
+    <div class="proc-step rv">
+      <span class="proc-n">01</span>
+      <div class="proc-ct"><h3>Conversa Inicial</h3><p>Entendemos seu estilo, suas necessidades e a essência do ambiente que você deseja criar.</p></div>
+    </div>
+    <div class="proc-step rv d1">
+      <span class="proc-n">02</span>
+      <div class="proc-ct"><h3>Projeto Personalizado</h3><p>Seleção de tecidos, cores e mecanismos com apresentação visual do projeto sob medida.</p></div>
+    </div>
+    <div class="proc-step rv d2">
+      <span class="proc-n">03</span>
+      <div class="proc-ct"><h3>Fabricação Artesanal</h3><p>Cada peça é confeccionada com atenção aos detalhes, garantindo acabamento impecável.</p></div>
+    </div>
+    <div class="proc-step rv d3">
+      <span class="proc-n">04</span>
+      <div class="proc-ct"><h3>Instalação Profissional</h3><p>Equipe especializada para instalação perfeita, transformando seu espaço com cuidado e precisão.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta" id="contato">
+  <h2 class="cta-h rv">Transforme seu<br>espaço em <em>arte</em></h2>
+  <p class="cta-sub rv d1">Solicite um orçamento sem compromisso e descubra como podemos traduzir sua personalidade em cada detalhe do seu ambiente.</p>
+  <a href="https://wa.me/5511962513056" target="_blank" class="cta-btn rv d2"><span>Falar com Cristiane</span></a>
+  <div class="cta-info rv d3">
+    <a href="mailto:ateliecrievida@outlook.com">ateliecrievida@outlook.com</a>
+    <a href="https://wa.me/5511962513056" target="_blank">(11) 96251-3056</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="ft-logo">Ateliê Crie Vida</div>
+  <div class="ft-sub">Cortinas e persianas que traduzem sua personalidade</div>
+  <div class="ft-links">
+    <a href="#hero">Início</a>
+    <a href="#contato">Contato</a>
+    <a href="https://wa.me/5511962513056" target="_blank">WhatsApp</a>
+    <a href="mailto:ateliecrievida@outlook.com">E-mail</a>
+  </div>
+  <div class="ft-copy">© 2025 Ateliê Crie Vida. Todos os direitos reservados.</div>
+</footer>
+
+<!-- WHATSAPP FLOAT -->
+<a href="https://wa.me/5511962513056" target="_blank" class="wpp" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<script>
+// Preloader
+window.addEventListener('load',()=>{setTimeout(()=>{document.getElementById('preloader').classList.add('hidden')},2000)});
+
+// Nav scroll
+const nav=document.getElementById('nav');
+const hero=document.getElementById('hero');
+const obs=new IntersectionObserver(([e])=>{
+  if(e.isIntersecting){nav.classList.remove('scrolled');nav.classList.add('hero-visible')}
+  else{nav.classList.add('scrolled');nav.classList.remove('hero-visible')}
+},{threshold:0.1});
+obs.observe(hero);
+
+// Reveal on scroll
+const reveals=document.querySelectorAll('.rv');
+const revObs=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('v');revObs.unobserve(e.target)}})
+},{threshold:0.15,rootMargin:'0px 0px -40px 0px'});
+reveals.forEach(el=>revObs.observe(el));
+
+// Parallax hero subtle
+window.addEventListener('scroll',()=>{
+  const s=window.scrollY;
+  const h=document.querySelector('.hero-c');
+  if(s<window.innerHeight&&h){h.style.transform=`translateY(${s*0.15}px)`;h.style.opacity=1-s/(window.innerHeight*0.8)}
+});
+</script>
+</body>
+</html>
